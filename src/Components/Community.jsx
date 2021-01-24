@@ -1,61 +1,109 @@
 import React from "react";
+import CommunityQuery from './CommunityQuery';
+import firebase from '../firebase'
+import $ from 'jquery'
+
+const db = firebase.firestore();
 
 
-function Community() {
-    return (
-        <div className="community">
-            <DataInput />
-            <div class="container">
-                <div class="row align-items-center my-5">
-                    <div class="col-lg-7">
-                        <img
-                            class="img-fluid rounded mb-4 mb-lg-0"
-                            src="http://placehold.it/900x400"
-                            alt=""
-                        />
-                    </div>
-                    <div class="col-lg-5">
-                        <h1 class="font-weight-light">Home</h1>
-                        <p>
-                            Lorem Ipsum is simply dummy text of the printing and typesetting
-                            industry. Lorem Ipsum has been the industry's standard dummy text
-                            ever since the 1500s, when an unknown printer took a galley of
-                            type and scrambled it to make a type specimen book.
-            </p>
-                    </div>
-                </div>
+class Community extends React.Component {
+    constructor(props) {
+        super(props);
+        this.toggleForm = this.toggleForm.bind(this);
+    }
+
+    toggleForm(e) {
+        e.preventDefault();
+        $("#dataInput").toggle();
+    }
+
+    render() {
+        return (
+            <div className="community">
+                <CommunityQuery />
+                <button type="button" onClick={this.toggleForm}>Data collection form</button>
+                <DataInput />
             </div>
-        </div>
-    );
+        );
+    }
 }
 
 class DataInput extends React.Component {
     constructor(props) {
         super(props);
+
+        // input handling inspired by https://dmitripavlutin.com/react-forms-tutorial/
+        // turned out to be an awful way of doing it lmao
+        this.state = {
+            values: {
+                hrttime: "",
+                age: "",
+                form: "",
+                libido: false,
+                acne: false,
+                weightgain: false,
+                weightloss: false,
+                muscle: false,
+                fatredistribution: false,
+                irritability: false,
+                bodyhair: false,
+                facialhair: false,
+                voicechanges: false,
+                bodyodor: false,
+                bottomgrowth: false,
+                othereffects: ""
+            }
+        };
+
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.setData = this.setData.bind(this);
     }
 
     handleSubmit(e) {
         console.log("Submitting information form");
         e.preventDefault();
+        console.log(this.state.values);
+        db.collection("testosterone").doc()
+            .set(this.state.values)
+            .then((_) => {
+                alert("Information submitted!");
+                window.location.reload();
+            })
+            .catch((error) => {
+                alert("Error adding document, see console");
+                console.error("error adding object to db", error);
+            });
+
     }
+
+    setData(name, isCheckbox = false) {
+        return ({ target: { value } }) => {
+            let newValue;
+            if (isCheckbox) {
+                newValue = (value === "on");
+            } else {
+                newValue = value;
+            }
+            this.state.values[name] = newValue;
+        };
+    };
 
     render() {
         return (
-            <div className="dataInput">
+            <div style={{display: "none"}} id="dataInput">
                 <h1>Submit information</h1>
                 <form onSubmit={this.handleSubmit}>
                     <label>General info</label>
                     <br/>
-                    <label>Time on HRT:</label>
-                    <input type="text" name="hrttime" />
+                    <label>Time on HRT (months, approx):</label>
+                    <input onChange={this.setData("hrttime")} type="text" name="hrttime" />
                     <br/>
                     <label>Age:</label>
-                    <input type="text" name="age" />
+                    <input onChange={this.setData("age")} type="text" name="age" />
                     <br/>
                     <label>Form:</label>
-                    <select>
-                        <option value={null}>select...</option>
+                    <select onChange={this.setData("form")} name="form">
+                        <option value={null} selected>select...</option>
                         <option value="pills">Pills</option>
                         <option value="gel">Gel/cream</option>
                         <option value="patch">Patch</option>
@@ -65,43 +113,43 @@ class DataInput extends React.Component {
                     <label>Testosterone-specific info</label>
                     <br/>
                     <label>Increased libido:</label>
-                    <input type="checkbox" name="libido"/>
+                    <input onChange={this.setData("libido", true)} type="checkbox" name="libido"/>
                     <br/>
                     <label>Increased acne:</label>
-                    <input type="checkbox" name="acne"/>
+                    <input onChange={this.setData("acne", true)} type="checkbox" name="acne"/>
                     <br/>
                     <label>Weight gain:</label>
-                    <input type="checkbox" name="weightgain"/>
+                    <input onChange={this.setData("weightgain", true)} type="checkbox" name="weightgain"/>
                     <br/>
                     <label>Weight loss:</label>
-                    <input type="checkbox" name="weightloss"/>
+                    <input onChange={this.setData("weightloss", true)} type="checkbox" name="weightloss"/>
                     <br/>
                     <label>Muscle gain:</label>
-                    <input type="checkbox" name="muscle"/>
+                    <input onChange={this.setData("muscle", true)} type="checkbox" name="muscle"/>
                     <br/>
                     <label>Fat redistribution:</label>
-                    <input type="checkbox" name="fatredistribution"/>
+                    <input onChange={this.setData("fatredistribution", true)} type="checkbox" name="fatredistribution"/>
                     <br/>
                     <label>Increased irritability:</label>
-                    <input type="checkbox" name="irritability"/>
+                    <input onChange={this.setData("irritability", true)} type="checkbox" name="irritability"/>
                     <br/>
                     <label>Increased body hair:</label>
-                    <input type="checkbox" name="bodyhair"/>
+                    <input onChange={this.setData("bodyhair", true)} type="checkbox" name="bodyhair"/>
                     <br/>
                     <label>Increased facial hair:</label>
-                    <input type="checkbox" name="facialhair"/>
+                    <input onChange={this.setData("facialhair", true)} type="checkbox" name="facialhair"/>
                     <br/>
                     <label>Voice changes:</label>
-                    <input type="checkbox" name="voicechanges"/>
+                    <input onChange={this.setData("voicechanges", true)} type="checkbox" name="voicechanges"/>
                     <br/>
                     <label>Body odor changes:</label>
-                    <input type="checkbox" name="bodyodor"/>
+                    <input onChange={this.setData("bodyodor", true)} type="checkbox" name="bodyodor"/>
                     <br/>
                     <label>Bottom growth:</label>
-                    <input type="checkbox" name="bottomgrowth"/>
+                    <input onChange={this.setData("bottomgrowth", true)} type="checkbox" name="bottomgrowth"/>
                     <br/>
                     <label>Other effects:</label>
-                    <input type="text" name="othereffects"/>
+                    <input onChange={this.setData("othereffects")} type="text" name="othereffects"/>
                     <br/>
                     <input type="submit" value="submit" />
                 </form>

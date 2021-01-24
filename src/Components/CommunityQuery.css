@@ -1,0 +1,50 @@
+.Box {
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 10px;
+    margin-top: 10px;
+    color: #081104;
+}
+  
+.Box p {
+    margin: 0px;
+}
+  
+.BoxName {
+    font-weight: bold;
+    font-size: 24pt;
+}
+  
+.CategoryName {
+    font-size: 16pt;
+    display: inline;
+}
+  
+.Buttons {
+    margin: 1.5%;
+}
+  
+.Category {
+    margin-top: 16px;
+}
+
+.Finding {
+    margin-top: 100px;
+}
+
+.Category Button {
+  background-color: #4c2c72;
+  color: #EAE2F4;
+  font-weight: 900;
+  padding: 5px;
+  border-radius: 1em;
+  margin-right: 1em;
+  font-size: 12pt;
+}
+
+.Filters {
+  background-color: #9CE37D;
+  border-radius: 1em;
+}
+  
