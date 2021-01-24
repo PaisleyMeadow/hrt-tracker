@@ -1,5 +1,8 @@
 import React from "react";
 import CommunityQuery from './CommunityQuery';
+import firebase from '../firebase'
+
+const db = firebase.firestore();
 
 
 function Community() {
@@ -46,8 +49,17 @@ class DataInput extends React.Component {
         console.log("Submitting information form");
         e.preventDefault();
         console.log(this.state.values);
-        alert("Information submitted!");
-        window.location.reload();
+        db.collection("testosterone").doc()
+            .set(this.state.values)
+            .then((_) => {
+                alert("Information submitted!");
+                window.location.reload();
+            })
+            .catch((error) => {
+                alert("Error adding document, see console");
+                console.error("error adding object to db", error);
+            });
+
     }
 
     setData(name, isCheckbox = false) {
