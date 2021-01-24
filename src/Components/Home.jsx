@@ -13,14 +13,11 @@ function BodyOptions() {
     {
         return <div className="new-body">
             <h1>Welcome to Transpire.</h1>
-            {/* this is a kanye quote lmao */}
-            <p>This project was made for and by trans, non-binary, and
-                gender nonconforming people who XXXXX
-                This is a Kanye quote lol:
-                Society has put up so many boundaries, so many limitations on what’s right and wrong that it’s almost impossible to get a pure thought out. It’s like a little kid, a little boy, looking at colors, and no one told him what colors are good, before somebody tells you you shouldn’t like pink because that’s for girls, or you’d instantly become a gay two-year-old. Why would anyone pick blue over pink? Pink is obviously a better color. Everyone’s born confident, and everything’s taken away from you.
+            <p>
+        This is a protoype of a web application created for trans people to record and track information about their health and any medical transitioning options they are pursuing. Since most of the information on HRT/surgeries is "crowdsourced," anecdotal, etc. and many trans people don't have access to decent medical resources, Transpire also aims to anonymously gather this data to make it easy to access and compare to one's own journey.
             </p>
             <p>
-                Create a profile to begin logging your something something or check out our
+                Create a profile to begin logging your transition-related medical information, or check out our
                 <a onClick={navigateToCommunity}> community </a>
                 to learn about other's experiences.
             </p>
@@ -29,9 +26,6 @@ function BodyOptions() {
                 <button onClick={navigateToRegister}>Sign-up</button>
             </div>
         </div>
-    }
-    {
-
     }
 }
 
