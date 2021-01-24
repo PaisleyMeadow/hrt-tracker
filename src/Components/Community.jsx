@@ -47,7 +47,7 @@ class DataInput extends React.Component {
                 <form onSubmit={this.handleSubmit}>
                     <label>General info</label>
                     <br/>
-                    <label>Time on HRT:</label>
+                    <label>Time on HRT (months, approx):</label>
                     <input type="text" name="hrttime" />
                     <br/>
                     <label>Age:</label>
