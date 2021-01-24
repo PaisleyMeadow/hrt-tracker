@@ -7,3 +7,4 @@ export { default as Header } from "./Header";
 export { default as Body } from "./Body";
 export { default as Login } from "./Login";
 export { default as CreateAccoutn } from "./CreateAccount";
+export { default as Graph } from "./Graph";
