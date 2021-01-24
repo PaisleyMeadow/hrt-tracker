@@ -3,6 +3,7 @@ import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { Header, Home, Login, Signup, Profile, Community} from "./Components";
 
+
 function App() {
 
   return (
