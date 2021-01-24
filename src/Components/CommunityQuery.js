@@ -126,22 +126,22 @@ function CommunityQuery() {
             (post[1] === 7 && ageChecks.includes('age7', 0)) ||
             (post[1] === 8 && ageChecks.includes('age8', 0))) &&
             (timeChecks.length === 0 ||
-            (post[3] === 1 && timeChecks.includes('time1', 0)) ||
-            (post[3] === 2 && timeChecks.includes('time2', 0)) ||
-            (post[3] === 3 && timeChecks.includes('time3', 0)) ||
-            (post[3] === 4 && timeChecks.includes('time4', 0)) ||
-            (post[3] === 5 && timeChecks.includes('time5', 0)) ||
-            (post[3] === 6 && timeChecks.includes('time6', 0)) ||
-            (post[3] === 7 && timeChecks.includes('time7', 0)) ||
-            (post[3] === 8 && timeChecks.includes('time8', 0)) ||
-            (post[3] === 9 && timeChecks.includes('time9', 0)) ||
-            (post[3] === 10 && timeChecks.includes('time10', 0)) ||
-            (post[3] === 11 && timeChecks.includes('time11', 0))) &&
+            (post[2] === 1 && timeChecks.includes('time1', 0)) ||
+            (post[2] === 2 && timeChecks.includes('time2', 0)) ||
+            (post[2] === 3 && timeChecks.includes('time3', 0)) ||
+            (post[2] === 4 && timeChecks.includes('time4', 0)) ||
+            (post[2] === 5 && timeChecks.includes('time5', 0)) ||
+            (post[2] === 6 && timeChecks.includes('time6', 0)) ||
+            (post[2] === 7 && timeChecks.includes('time7', 0)) ||
+            (post[2] === 8 && timeChecks.includes('time8', 0)) ||
+            (post[2] === 9 && timeChecks.includes('time9', 0)) ||
+            (post[2] === 10 && timeChecks.includes('time10', 0)) ||
+            (post[2] === 11 && timeChecks.includes('time11', 0))) &&
             ((radios === '' ||
-            (post[4] === 1 && radios === 'form1') ||
-            (post[4] === 2 && radios === 'form2') ||
-            (post[4] === 3 && radios === 'form3') ||
-            (post[4] === 4 && radios === 'form4')))) {
+            (post[3] === 1 && radios === 'form1') ||
+            (post[3] === 2 && radios === 'form2') ||
+            (post[3] === 3 && radios === 'form3') ||
+            (post[3] === 4 && radios === 'form4')))) {
             newCounts[0] += post[4];
             newCounts[1] += post[5];
             newCounts[2] += post[6];
@@ -231,14 +231,11 @@ function CommunityQuery() {
 
   return (
     <div className="App">
-      <div className="Box Header">
-        <p className="BoxName">community</p>
-      </div>
       <div className="Box Filters">
-        <p className="BoxName">filters</p>
+        <p className="BoxName">Filters</p>
         <div className="Category">
           <ToggleButtonGroup type="radio" name="meds" value={medChecks} onChange={handleMedChecks}>
-            <p className="CategoryName">medication</p>
+            <p className="CategoryName">Medication</p>
             {medList.map((check) => (
               <ToggleButton className="Buttons" value={check.value}>{check.name}</ToggleButton>
             ))}
@@ -246,7 +243,7 @@ function CommunityQuery() {
         </div>
         <div className="Category">
           <ToggleButtonGroup type="checkbox" value={ageChecks} onChange={handleAgeChecks}>
-            <p className="CategoryName">age</p>
+            <p className="CategoryName">Age</p>
             {ageList.map((check) => (
               <ToggleButton className="Buttons" value={check.value}>{check.name}</ToggleButton>
             ))}
@@ -254,7 +251,7 @@ function CommunityQuery() {
         </div>
         <div className="Category">
           <ToggleButtonGroup type="checkbox" value={timeChecks} onChange={handleTimeChecks}>
-            <p className="CategoryName">time on hrt</p>
+            <p className="CategoryName">Time on HRT</p>
             {timeList.map((check) => (
               <ToggleButton className="Buttons" value={check.value}>{check.name}</ToggleButton>
             ))}
@@ -262,7 +259,7 @@ function CommunityQuery() {
         </div>
         <div className="Category">
           <ToggleButtonGroup type="radio" name="forms" value={radios} onChange={handleRadios}>
-            <p className="CategoryName">form taken</p>
+            <p className="CategoryName">Form taken</p>
             {formList.map((radio) => (
               <ToggleButton className="Buttons" value={radio.value}>{radio.name}</ToggleButton>
             ))}
@@ -270,13 +267,11 @@ function CommunityQuery() {
         </div>
         <div className="Category">
             <Button onClick={clearAll}>Clear</Button>
-        </div>
-        <div className="Category">
             <Button onClick={updateCounts}>Update</Button>
         </div>
       </div>
-      <div className="Box Filters">
-        <p className="BoxName">here's what we found</p>
+      <div className="Box Findings">
+        <p className="BoxName">Here's what we found</p>
         <div className="Category"><p className="Finding">Increased Libido: <span>{counts[0]}/{counts[14]} ({Math.round(counts[0] / counts[14] * 100)}%)</span></p></div>
         <div className="Category"><p className="Finding">Decreased Libido: <span>{counts[1]}/{counts[14]} ({Math.round(counts[1] / counts[14] * 100)}%)</span></p></div>
         <div className="Category"><p className="Finding">Gain Weight: <span>{counts[2]}/{counts[14]} ({Math.round(counts[2] / counts[14] * 100)}%)</span></p></div>

@@ -5,7 +5,6 @@
     padding: 10px;
     margin-top: 10px;
     color: #081104;
-    border: 1px solid #081104;
 }
   
 .Box p {
@@ -23,14 +22,29 @@
 }
   
 .Buttons {
-    margin: 10px;
+    margin: 1.5%;
 }
   
 .Category {
-    margin-top: 15px;
+    margin-top: 16px;
 }
 
 .Finding {
     margin-top: 100px;
+}
+
+.Category Button {
+  background-color: #4c2c72;
+  color: #EAE2F4;
+  font-weight: 900;
+  padding: 5px;
+  border-radius: 1em;
+  margin-right: 1em;
+  font-size: 12pt;
+}
+
+.Filters {
+  background-color: #9CE37D;
+  border-radius: 1em;
 }
   
