@@ -1,30 +1,49 @@
-import React from "react";
+import { useState } from 'react';
+import ComposeTweet from './components/ComposeTweet';
+import Tweet from './components/Tweet';
+import '../App.css';
+
+const defaultTweets = [
+    {
+        author: "matt",
+        body: "QWER Hacks is awesome!",
+    },
+    {
+        author: "sharvani",
+        body: "arjun is the coolest bean of all time :heart:",
+    },
+    {
+        author: "arjun",
+        body: "no u <3",
+    },
+];
 
 function Profile() {
+    const [tweets, setTweets] = useState(defaultTweets);
+    const createTweet = (newTweetText) => {
+        const newTweets = [...tweets];
+        newTweets.push({
+            author: "you!",
+            body: newTweetText,
+        });
+        setTweets(newTweets);
+    }
     return (
         <div className="profile">
-            <div class="container">
-                <div class="row align-items-center my-5">
-                    <div class="col-lg-7">
-                        <img
-                            class="img-fluid rounded mb-4 mb-lg-0"
-                            src="http://placehold.it/900x400"
-                            alt=""
-                        />
-                    </div>
-                    <div class="col-lg-5">
-                        <h1 class="font-weight-light">Home</h1>
-                        <p>
-                            Lorem Ipsum is simply dummy text of the printing and typesetting
-                            industry. Lorem Ipsum has been the industry's standard dummy text
-                            ever since the 1500s, when an unknown printer took a galley of
-                            type and scrambled it to make a type specimen book.
-            </p>
-                    </div>
-                </div>
-            </div>
+            <header className="App-header">
+                <p>
+                    Hello QWER Hacks!
+        </p>
+                <ComposeTweet createTweet={createTweet} />
+                {
+                    tweets.map((tweet) => {
+                        return <Tweet author={tweet.author} body={tweet.body} />
+                    })
+                }
+            </header>
         </div>
     );
 }
+
 
 export default Profile;
