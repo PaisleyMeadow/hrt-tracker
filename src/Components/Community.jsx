@@ -1,8 +1,10 @@
 import React from "react";
+import CommunityQuery from './CommunityQuery';
 
 function Community() {
     return (
         <div className="community">
+            <CommunityQuery />
             <div class="container">
                 <div class="row align-items-center my-5">
                     <div class="col-lg-7">
