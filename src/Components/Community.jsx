@@ -1,17 +1,31 @@
 import React from "react";
 import CommunityQuery from './CommunityQuery';
 import firebase from '../firebase'
+import $ from 'jquery'
 
 const db = firebase.firestore();
 
 
-function Community() {
-    return (
-        <div className="community">
-            <CommunityQuery />
-            <DataInput />
-        </div>
-    );
+class Community extends React.Component {
+    constructor(props) {
+        super(props);
+        this.toggleForm = this.toggleForm.bind(this);
+    }
+
+    toggleForm(e) {
+        e.preventDefault();
+        $("#dataInput").toggle();
+    }
+
+    render() {
+        return (
+            <div className="community">
+                <CommunityQuery />
+                <button type="button" onClick={this.toggleForm}>Data collection form</button>
+                <DataInput />
+            </div>
+        );
+    }
 }
 
 class DataInput extends React.Component {
@@ -76,7 +90,7 @@ class DataInput extends React.Component {
 
     render() {
         return (
-            <div>
+            <div style={{display: "none"}} id="dataInput">
                 <h1>Submit information</h1>
                 <form onSubmit={this.handleSubmit}>
                     <label>General info</label>
