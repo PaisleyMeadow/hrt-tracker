@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import Select from "react-dropdown-select";
 import Graph from "./Graph"
+import '../App.css';
+
 
 const defaultMeds = [
     {
@@ -78,7 +80,7 @@ function Medication(props) {
                  Current dosage: {props.dosage} {props.units}
             </p>
             <p>Update dosage.</p>
-            <input type="number" onChange={handleInput} />
+            <input type="number" onChange={handleInput} /><br/>
             <button onClick={updateDosage}>Update</button>
         </div>
     );
@@ -114,7 +116,7 @@ function AddMed(props) {
         setStart("");
     }
     return (
-        <div>
+        <div className="add-entry">
             <p>Add Medication</p>
             <p>Medication name.</p>
             <input type="text" onChange={handleName} />
@@ -125,8 +127,8 @@ function AddMed(props) {
             <p>Dosage.</p>
             <input type="text" onChange={handleDosage} />
             <p>Units of Dosage.</p>
-            <input type="text" onChange={handleUnits} />
-            <button onClick={publish}>create</button>
+            <input type="text" onChange={handleUnits} /><br/>
+            <button onClick={publish}>Create</button>
         </div>
     )
 }
@@ -159,10 +161,10 @@ function Weight(props) {
                  {props.weight} lbs
             </p>
             <p>Edit weight.</p>
-            <input type="number" onChange={handleWeight} />
+            <input type="number" onChange={handleWeight} /><br/>
             <button onClick={updateWeight}>Update</button>
             <p>Edit date.</p>
-            <input type="text" onChange={handleDate} />
+            <input type="text" onChange={handleDate} /><br/>
             <button onClick={updateDate}>Update</button>
         </div>
     );
@@ -184,12 +186,12 @@ function AddWeight(props) {
         setDate("");
     }
     return (
-        <div>
+        <div className="add-entry">
             <p>Add Weight Entry</p>
             <input type="number" onChange={handleWeight} />
             <p>Input date.</p>
-            <input type="text" onChange={handleDate} />
-            <button onClick={publish}>create</button>
+            <input type="text" onChange={handleDate} /><br/>
+            <button onClick={publish}>Create</button>
         </div>
     )
 }
@@ -249,12 +251,12 @@ function Mood(props) {
             { value: 'Terrible', label: 'Terrible' },
                 ]} 
                 />
-            <button onClick={updateMood}>Update</button>
+            <button onClick={updateMood}>Update</button><br/>
             <p>Edit date.</p>
-            <input type="text" onChange={handleDate} />
+            <input type="text" onChange={handleDate} /><br/>
             <button onClick={updateDate}>Update</button>
             <p>Edit note.</p>
-            <input type="text" onChange={handleNote} />
+            <input type="text" onChange={handleNote} /><br/>
             <button onClick={updateNote}>Update</button>
         </div>
     );
@@ -292,7 +294,7 @@ function AddMood(props) {
         setNote("");
     }
     return (
-        <div>
+        <div className="add-entry">
             <p>Add Mood entry.</p>
             Select Mood.
             <Select name="form-field-name" onChange={handleMood} value = 'Meh'
@@ -308,8 +310,8 @@ function AddMood(props) {
             <p>Date.</p>
             <input type="text" onChange={handleDate} />
             <p>Notes.</p>
-            <input type="text" onChange={handleNote} />
-            <button onClick={publish}>create</button>
+            <input type="text" onChange={handleNote} /><br/>
+            <button onClick={publish}>Create</button>
         </div>
     )
 }
@@ -358,16 +360,16 @@ function Cycle(props) {
                 Notable symptoms: {props.symptoms}
             </p>
             <p>Edit start date.</p>
-            <input type="text" onChange={handleStart} />
+            <input type="text" onChange={handleStart} /><br/>
             <button onClick={updateStart}>Update</button>
             <p>Edit Duration.</p>
-            <input type="number" onChange={handleDur} />
+            <input type="number" onChange={handleDur} /><br/>
             <button onClick={updateDur}>Update</button>
             <p>Edit end date.</p>
-            <input type="number" onChange={handleEnd} />
+            <input type="number" onChange={handleEnd} /><br/>
             <button onClick={updateEnd}>Update</button>
             <p>Edit Symptoms.</p>
-            <input type="text" onChange={handleSym} />
+            <input type="text" onChange={handleSym} /><br/>
             <button onClick={updateSym}>Update</button>
         </div>
     );
@@ -400,7 +402,7 @@ function AddCycle(props) {
         setDur(0);
     }
     return (
-        <div>
+        <div className="add-entry">
             <p>Add Cycle Entry</p>
             <p>Start date.</p>
             <input type="text" onChange={handleStart} />
@@ -409,8 +411,8 @@ function AddCycle(props) {
             <p>End date.</p>
             <input type="number" onChange={handleEnd} />
             <p>Symptoms.</p>
-            <input type="text" onChange={handleSym} />
-            <button onClick={publish}>create</button>
+            <input type="text" onChange={handleSym} /><br/>
+            <button onClick={publish}>Create</button>
         </div>
     )
 }
@@ -463,6 +465,7 @@ function Profile() {
     }
     return (
         <div className="profile">
+        <div className="medication-container">
                 <h2>
                     Medications
         </h2>
@@ -472,6 +475,8 @@ function Profile() {
                         return <Medication name={med.name} form={med.form} dosage={med.dosage} units={med.units} start={med.start}/>
                     })
                 }
+        </div>
+        <div className="mood-container">
             <h2>
                 Mood Tracker
         </h2>
@@ -481,6 +486,8 @@ function Profile() {
                     return <Mood mood={mood.mood} date={mood.date} note={mood.note} />
                 })
             }
+        </div>
+        <div className="menstrual-container">
             <h2>
                 Menstrual Cycle Tracker
         </h2>
@@ -490,6 +497,8 @@ function Profile() {
                     return <Cycle start={cycle.start} end={cycle.end} duration={cycle.duration} symptoms={cycle.symptoms} />
                 })
             }
+        </div>
+        <div className="weight-container">
             <h2>
                 Weight Tracker
         </h2>
@@ -499,6 +508,7 @@ function Profile() {
                     return <Weight weight={weight.weight} date={weight.date} />
                 })
             }
+        </div>
         </div>
     );
 }

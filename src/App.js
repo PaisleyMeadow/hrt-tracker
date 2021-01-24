@@ -8,7 +8,6 @@ function App() {
     <div className="App">
       <Header />
       <Router>
-        <Navigation />
         <Switch>
           <Route path="/" exact component={() => <Home />} />
           <Route path="/signup" exact component={() => <Signup />} />
