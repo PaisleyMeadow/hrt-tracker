@@ -21,6 +21,9 @@ function BodyOptions() {
                 <a onClick={navigateToCommunity}> community </a>
                 to learn about other's experiences.
             </p>
+            <p>
+                <i>made with love at qwer hacks 2021 &#060;3 <a href="https://github.com/PaisleyMeadow/hrt-tracker">view source</a></i>
+            </p>
             <div className="button-container">
                 <button onClick={navigateToLogin}>Login</button>
                 <button onClick={navigateToRegister}>Sign-up</button>
