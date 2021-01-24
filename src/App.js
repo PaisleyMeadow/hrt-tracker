@@ -1,5 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { Navigation, Home, Signup, Profile, Community } from "./Components";
 
 function App() {
   return (
@@ -18,6 +20,15 @@ function App() {
           Learn React
         </a>
       </header>
+      <Router>
+        <Navigation />
+        <Switch>
+          <Route path="/" exact component={() => <Home />} />
+          <Route path="/signup" exact component={() => <Signup />} />
+          <Route path="/profile" exact component={() => <Profile />} />
+          <Route path="/community" exact component={() => <Community />} />
+        </Switch>
+      </Router>
     </div>
   );
 }
