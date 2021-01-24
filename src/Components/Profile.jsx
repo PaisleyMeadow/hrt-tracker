@@ -490,7 +490,7 @@ function Profile() {
                     return <Weight weight={weight.weight} date={weight.date} />
                 })
             }
-            <Graph />
+            {/* <Graph /> */}
         </div>
         </div>
     );
