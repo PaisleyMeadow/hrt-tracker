@@ -1,12 +1,8 @@
 import { useState } from 'react';
 import Select from "react-dropdown-select";
-<<<<<<< HEAD
 import Graph from "./Graph"
 import '../App.css';
 
-=======
-import Graph from "./Graph";
->>>>>>> 70459088524a0946927e2d15fbdcfddd37bb099d
 
 const defaultMeds = [
     {
