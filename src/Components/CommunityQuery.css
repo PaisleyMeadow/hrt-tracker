@@ -1,0 +1,36 @@
+.Box {
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 10px;
+    margin-top: 10px;
+    color: #081104;
+    border: 1px solid #081104;
+}
+  
+.Box p {
+    margin: 0px;
+}
+  
+.BoxName {
+    font-weight: bold;
+    font-size: 24pt;
+}
+  
+.CategoryName {
+    font-size: 16pt;
+    display: inline;
+}
+  
+.Buttons {
+    margin: 10px;
+}
+  
+.Category {
+    margin-top: 15px;
+}
+
+.Finding {
+    margin-top: 100px;
+}
+  
