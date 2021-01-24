@@ -9,8 +9,10 @@ body{
   -moz-osx-font-smoothing: grayscale;
 }
 a{
+  cursor: pointer;
   color:#081104; 
-}
+  text-decoration: underline;
+} 
 .header{
   text-align: left;
   background-color: #4c2c72;
@@ -18,12 +20,21 @@ a{
   color: #EAE2F4;
 
   display: grid;
-  grid-template-columns: auto 10%;
+  grid-template-columns: auto 20%;
+  align-items: end;
 }
-.user-options, .new-user-options{
+.header h1{
+  cursor: pointer;
+}
+.user-options{
   display: grid;
   grid-template-columns: auto auto;
 }
+.new-user-options{
+  display: grid;
+  grid-template-columns: auto auto auto;
+}
+
 .app-logo{
   font-size: 2em;
 }
@@ -39,6 +50,7 @@ a{
   width: 50%;
   padding: 3%;
 
+  text-align: center;
   background-color: #4c2c72;
   border-radius: 2em;
 }
@@ -65,4 +77,29 @@ a{
 .button-container button:hover{
   cursor: pointer;
   background-color:  #ccf1bc;
+}
+
+.register-form{
+  width: 100%;
+}
+.register-form input[type=text]{
+  width: 100%;
+  border: none;
+  margin-bottom: 2%;
+  padding: 2%;
+  border-radius: 1em;
+  font-size: 1.1em;
+}
+.register-form input[type=submit]{
+  width: 50%;
+  padding: 2%;
+  border: none;
+  border-radius: 1em;
+  background-color: #9ce37d;
+  font-size: 1.1em;
+  color: #4c2c72;
+}
+.register-form input[type=submit]:hover{
+  cursor: pointer;
+  background-color: #ccf1bc;
 }

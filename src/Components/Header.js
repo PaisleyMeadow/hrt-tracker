@@ -1,27 +1,39 @@
 import '../App.css';
-import Login from './Login';
-import CreateAccount from './CreateAccount';
+import { useHistory } from "react-router-dom";
+
 
 function HeaderOptions(props){
+
+    const history = useHistory();
+    const navigateToLogin = () => history.push('/login');
+    const navigateToRegister = () => history.push('/signup');
+    const navigateToCommunity = () => history.push('/community');
+    const navigateToProfile = () => history.push('/profile');
+
     if(false) //if user is logged in
     {
         return <div className="user-options">
-            <div>My Profile</div>
-            <div>Community</div>
+            <a onClick={navigateToProfile}>My Profile</a>
+            <a onClick={navigateToCommunity}>Community</a>
         </div>
     }
     else{ //new user/not logged in
         return <div className="new-user-options">
-            <a href="#" onClick={CreateAccount}>Register</a>
-            <a href="#">Community</a>
-        </div>;
+            <a onClick={navigateToRegister}>Sign-up</a>
+            <a onClick={navigateToLogin}>Login</a>
+            <a onClick={navigateToCommunity}>Community</a>
+        </div>
     }
 }
 
 function Header() {
+
+    const history = useHistory();
+    const navigateToHome = () => history.push('/');
+
     return(
         <div className="header">
-            <h1 className="app-logo">Transpire</h1>
+            <h1 className="app-logo" onClick={navigateToHome}>Transpire</h1>
                 <HeaderOptions />
         </div>
     );
