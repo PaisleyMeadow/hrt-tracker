@@ -35,11 +35,6 @@ function BodyOptions() {
     }
 }
 
-//should take you to community page
-function CommunityLinkClicked() {
-    alert("Community link clicked! Let's pretend you're going to the community page now...");
-}
-
 function Body() {
     return(
         <div className="body-container">

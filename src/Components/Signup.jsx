@@ -19,7 +19,8 @@ class SignupForm extends React.Component {
 
     handleSubmit(e) {
         e.preventDefault();
-        alert("Registering - Username: " + this.username.value + " Email: " + this.email.value + " Password: " + this.password.value);
+        console.log("Registering... Username: " + this.username.value + " Email: " + this.email.value + " Password: " + this.password.value);
+        window.location = "/profile";
     }
 
     render() {

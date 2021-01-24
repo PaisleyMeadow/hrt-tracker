@@ -1,7 +1,6 @@
 import '../App.css';
 import { useHistory } from "react-router-dom";
 
-
 function HeaderOptions(props){
 
     const history = useHistory();
@@ -10,7 +9,7 @@ function HeaderOptions(props){
     const navigateToCommunity = () => history.push('/community');
     const navigateToProfile = () => history.push('/profile');
 
-    if(false) //if user is logged in
+    if(true) //if user is logged in
     {
         return <div className="user-options">
             <a onClick={navigateToProfile}>My Profile</a>

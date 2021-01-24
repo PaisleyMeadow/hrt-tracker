@@ -1,4 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
+import { Authentication } from './Authentication';
+import { useHistory } from "react-router-dom";
 
 function Login() {
     return (
@@ -19,7 +21,8 @@ class LoginForm extends React.Component {
 
     handleSubmit(e) {
         e.preventDefault();
-        alert("Logging In...Username: " + this.username.value + " Password: " + this.password.value);
+        console.log("Logging In...Username: " + this.username.value + " Password: " + this.password.value);
+        window.location = "/profile";
     }
 
     render() {
