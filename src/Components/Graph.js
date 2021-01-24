@@ -1,22 +1,15 @@
 var React = require('react');
 var Component = React.Component;
-var CanvasJSReact = require('../canvasjs.react');
+var CanvasJSReact = require('../canvasjs.react.js');
 var CanvasJS = CanvasJSReact.CanvasJS;
 var CanvasJSChart = CanvasJSReact.CanvasJSChart;
+
 class Graph extends Component {
     constructor() {
         super();
         this.toggleDataSeries = this.toggleDataSeries.bind(this);
-        this.addSymbols = this.addSymbols.bind(this);
     }
-    addSymbols(e) {
-        var suffixes = ["", "K", "M", "B"];
-        var order = Math.max(Math.floor(Math.log(e.value) / Math.log(1000)), 0);
-        if (order > suffixes.length - 1)
-            order = suffixes.length - 1;
-        var suffix = suffixes[order];
-        return CanvasJS.formatNumber(e.value / Math.pow(1000, order)) + suffix;
-    }
+
     toggleDataSeries(e) {
         if (typeof (e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
             e.dataSeries.visible = false;
@@ -26,90 +19,94 @@ class Graph extends Component {
         }
         this.chart.render();
     }
+
+mapDatapoint (xValue, yValue) {
+    var yMap = ['Terrible', 'Bad', 'Meh', 'Ok', 'Good', 'Awesome'];
+    return {
+        x: xValue,
+        y: yMap.indexOf(yValue)
+    };
+};
+
     render() {
         const options = {
+            theme: "light2",
             animationEnabled: true,
-            colorSet: "colorSet2",
             title: {
-                text: "Monthly Sales"
+                text: "Mood VS Testosterone"
             },
+            subtitles: [{
+                text: "Click Legend to Hide or Unhide Data Series"
+            }],
             axisX: {
-                valueFormatString: "MMMM"
+                title: "Month"
             },
             axisY: {
-                prefix: "$",
-                labelFormatter: this.addSymbols
+                title: "Dosage (mg)",
+                titleFontColor: "#6D78AD",
+                lineColor: "#6D78AD",
+                labelFontColor: "#6D78AD",
+                tickColor: "#6D78AD"
+            },
+            axisY2: {
+                title: "Mood",
+                titleFontColor: "#51CDA0",
+                lineColor: "#51CDA0",
+                labelFontColor: "#51CDA0",
+                tickColor: "#51CDA0"
             },
             toolTip: {
                 shared: true
             },
             legend: {
                 cursor: "pointer",
-                itemclick: this.toggleDataSeries,
-                verticalAlign: "top"
+                itemclick: this.toggleDataSeries
             },
             data: [{
-                type: "column",
-                name: "Actual Sales",
+                type: "spline",
+                name: "Dosage (mg)",
                 showInLegend: true,
-                xValueFormatString: "MMMM YYYY",
-                yValueFormatString: "$#,##0",
+                xValueFormatString: "MMM YYYY",
+                yValueFormatString: "#,##0 mg",
                 dataPoints: [
-                    { x: new Date(2017, 0), y: 27500 },
-                    { x: new Date(2017, 1), y: 29000 },
-                    { x: new Date(2017, 2), y: 22000 },
-                    { x: new Date(2017, 3), y: 26500 },
-                    { x: new Date(2017, 4), y: 33000 },
-                    { x: new Date(2017, 5), y: 37000 },
-                    { x: new Date(2017, 6), y: 32000 },
-                    { x: new Date(2017, 7), y: 27500 },
-                    { x: new Date(2017, 8), y: 29500 },
-                    { x: new Date(2017, 9), y: 43000 },
-                    { x: new Date(2017, 10), y: 55000, indexLabel: "High Renewals" },
-                    { x: new Date(2017, 11), y: 39500 }
+                    { x: new Date(2019, 0, 1), y: 50 },
+                    { x: new Date(2019, 1, 1), y: 50 },
+                    { x: new Date(2019, 2, 1), y: 50 },
+                    { x: new Date(2019, 3, 1), y: 75 },
+                    { x: new Date(2019, 4, 1), y: 75 },
+                    { x: new Date(2019, 5, 1), y: 100 },
+                    { x: new Date(2019, 6, 1), y: 124 },
+                    { x: new Date(2019, 7, 1), y: 150 },
+                    { x: new Date(2019, 8, 1), y: 150 },
+                    { x: new Date(2019, 9, 1), y: 150 },
+                    { x: new Date(2019, 10, 1), y: 175 },
+                    { x: new Date(2019, 11, 1), y: 175 }
                 ]
-            }, {
-                type: "line",
-                name: "Expected Sales",
+            },
+            {
+                type: "spline",
+                name: "Average Mood",
+                axisYType: "secondary",
                 showInLegend: true,
-                yValueFormatString: "$#,##0",
+                xValueFormatString: "MMM YYYY",
                 dataPoints: [
-                    { x: new Date(2017, 0), y: 38000 },
-                    { x: new Date(2017, 1), y: 39000 },
-                    { x: new Date(2017, 2), y: 35000 },
-                    { x: new Date(2017, 3), y: 37000 },
-                    { x: new Date(2017, 4), y: 42000 },
-                    { x: new Date(2017, 5), y: 48000 },
-                    { x: new Date(2017, 6), y: 41000 },
-                    { x: new Date(2017, 7), y: 38000 },
-                    { x: new Date(2017, 8), y: 42000 },
-                    { x: new Date(2017, 9), y: 45000 },
-                    { x: new Date(2017, 10), y: 48000 },
-                    { x: new Date(2017, 11), y: 47000 }
-                ]
-            }, {
-                type: "area",
-                name: "Profit",
-                markerBorderColor: "white",
-                markerBorderThickness: 2,
-                showInLegend: true,
-                yValueFormatString: "$#,##0",
-                dataPoints: [
-                    { x: new Date(2017, 0), y: 11500 },
-                    { x: new Date(2017, 1), y: 10500 },
-                    { x: new Date(2017, 2), y: 9000 },
-                    { x: new Date(2017, 3), y: 13500 },
-                    { x: new Date(2017, 4), y: 13890 },
-                    { x: new Date(2017, 5), y: 18500 },
-                    { x: new Date(2017, 6), y: 16000 },
-                    { x: new Date(2017, 7), y: 14500 },
-                    { x: new Date(2017, 8), y: 15880 },
-                    { x: new Date(2017, 9), y: 24000 },
-                    { x: new Date(2017, 10), y: 31000 },
-                    { x: new Date(2017, 11), y: 19000 }
+                    this.mapDatapoint(new Date(2019, 0, 1), 'Bad' ),
+                    this.mapDatapoint(new Date(2019, 1, 1), 'Bad'),
+                    this.mapDatapoint(new Date(2019, 2, 1), 'Meh'),
+                    this.mapDatapoint(new Date(2019, 3, 1), 'Bad'),
+                    this.mapDatapoint(new Date(2019, 4, 1), 'Ok'),
+                    this.mapDatapoint(new Date(2019, 5, 1), 'Good'),
+                    this.mapDatapoint(new Date(2019, 6, 1), 'Meh'),
+                    this.mapDatapoint(new Date(2019, 7, 1), 'Ok'),
+                    this.mapDatapoint(new Date(2019, 8, 1), 'Good'),
+                    this. mapDatapoint(new Date(2019, 9, 1), 'Awesome'),
+                    this. mapDatapoint(new Date(2019, 10, 1), 'Awesome'),
+                    this. mapDatapoint(new Date(2019, 11, 1), 'Good'),
                 ]
             }]
         }
+
+
         return (
             <div>
                 <CanvasJSChart options={options}
@@ -119,6 +116,7 @@ class Graph extends Component {
             </div>
         );
     }
+
 }
 
 export default Graph; 
