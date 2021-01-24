@@ -1,8 +1,12 @@
 import { useState } from 'react';
 import Select from "react-dropdown-select";
+<<<<<<< HEAD
 import Graph from "./Graph"
 import '../App.css';
 
+=======
+import Graph from "./Graph";
+>>>>>>> 70459088524a0946927e2d15fbdcfddd37bb099d
 
 const defaultMeds = [
     {
@@ -240,18 +244,9 @@ function Mood(props) {
                 Notes: {props.note}
             </p>
             <p>Edit Mood input.</p>
-            Select Mood.
-            <Select name="form-field-name" onChange={handleMood} value = 'Meh'
-        options={[
-          { value: 'Awesome', label: 'Awesome' },
-          { value: 'Good', label: 'Good' },
-            { value: 'Ok', label: 'Ok' },
-            { value: 'Meh', label: 'Meh' },
-            { value: 'Bad', label: 'Bad' },
-            { value: 'Terrible', label: 'Terrible' },
-                ]} 
-                />
-            <button onClick={updateMood}>Update</button><br/>
+            Input Mood.
+            <input type="text" onChange={handleMood} />
+            <button onClick={updateMood}>Update</button>
             <p>Edit date.</p>
             <input type="text" onChange={handleDate} /><br/>
             <button onClick={updateDate}>Update</button>
@@ -296,17 +291,8 @@ function AddMood(props) {
     return (
         <div className="add-entry">
             <p>Add Mood entry.</p>
-            Select Mood.
-            <Select name="form-field-name" onChange={handleMood} value = 'Meh'
-                options={[
-                    { value: 'Awesome', label: 'Awesome' },
-                    { value: 'Good', label: 'Good' },
-                    { value: 'Ok', label: 'Ok' },
-                    { value: 'Meh', label: 'Meh' },
-                    { value: 'Bad', label: 'Bad' },
-                    { value: 'Terrible', label: 'Terrible' },
-                ]}
-            />
+            Input Mood.
+            <input type="text" onChange={handleDate} />
             <p>Date.</p>
             <input type="text" onChange={handleDate} />
             <p>Notes.</p>
@@ -508,6 +494,7 @@ function Profile() {
                     return <Weight weight={weight.weight} date={weight.date} />
                 })
             }
+            <Graph />
         </div>
         </div>
     );
